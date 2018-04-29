@@ -15,7 +15,7 @@ def getUserMove(b):
     print(statement1)
     while True: # Loop until proper input
         move = []
-        move = input().lower().split()
+        move = list(input().lower())
         if not(len(move) == 2):
             print ("That is not a valid move, try again.", statement1)
             continue
