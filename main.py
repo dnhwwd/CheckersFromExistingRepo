@@ -11,11 +11,11 @@ firstPlayer = 0
 
 # Gets the move from the User
 def getUserMove(b):
-    statement1 = "Select one of your tokens eg. " + chr(b.whitelist[0][0]+97) + str(b.whitelist[0][1])
+    statement1 = "Enter the token you wish to move, followed by a space, followed by the place you want to move. EX: e1 d2"
     print(statement1)
     while True: # Loop until proper input
         move = []
-        move = list(input().lower())
+        move = input().lower().split()
         if not(len(move) == 2):
             print ("That is not a valid move, try again.", statement1)
             continue
