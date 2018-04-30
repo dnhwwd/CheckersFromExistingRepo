@@ -31,9 +31,9 @@ def getUserMove(b):
 
 ### MAIN PROGRAM ###
 
-b = board(width, height, firstPlayer)
+
 difficulty = raw_input("Select easy, medium, or hard")
-setdifficulty(difficulty)
+b = board(width, height, firstPlayer,difficulty)
 b.printBoard()
 print("Welcome to checkers.")
 
