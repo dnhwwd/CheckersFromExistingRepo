@@ -5,14 +5,15 @@ class board(object):
     BLACK = 1
     WHITE = 0
     NOTDONE = -1
-    def __init__(self, width, height, firstPlayer, difficulty):
+    difficulty = ""
+    def __init__(self, width, height, firstPlayer):
         """
             Constructs a board, right now maxDepth is statically assigned
         """
         # Set the height and width of the game board
         self.width = width
         self.height = height
-        self.difficulty = difficulty
+        
         # Create two lists which will contain the pieces each player posesses
         self.blacklist = []
         self.whitelist = []
