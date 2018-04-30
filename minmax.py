@@ -102,7 +102,7 @@ def staticEval2(evalBoard):
         return float('-inf')
     # Unhappy Grandfather Evaluator
 #    return 0
-    if difficulty == "easy" or "Easy":
+    if evalBoard.difficulty == "easy" or "Easy":
         return 0
     # Some setup
     score = 0
@@ -117,7 +117,7 @@ def staticEval2(evalBoard):
     # Super Gigadeath Defense Evaluator
     # This AI will attempt to keep it's peices as close together as possible until it has a chance
     # to jump the opposing player. It's super effective
-    if difficulty == "hard" or "Hard":
+    if evalBoard.difficulty == "hard" or "Hard":
         distance = 0
         for piece1 in pieces:
         for piece2 in pieces:
