@@ -1,5 +1,5 @@
 # Created by Carson Wilcox for Professor Szpakowicz's AI class CSI 4106
-# These 
+# These
 # Main class runs the game
 from board import *
 from minmax import *
@@ -11,7 +11,7 @@ firstPlayer = 0
 
 # Gets the move from the User
 def getUserMove(b):
-    statement1 = "Select one of your tokens eg. " + chr(b.whitelist[0][0]+97) + str(b.whitelist[0][1])
+    statement1 = "Enter the token you wish to move, followed by a space, followed by the place you want to move. EX: e1 d2"
     print(statement1)
     while True: # Loop until proper input
         move = []
@@ -48,12 +48,14 @@ while b.gameWon == -1:
     except Exception:
         print ("Invalid move")
         continue
-        
+
     # Then it is the computers turn
     temp = minMax2(b)
     b = temp[0]
     print ("**********COMPUTER MOVE**********")
     b.printBoard()
+    if len(b.blacklist) != 0 and len(b.whitelist) != 0:
+        b.gameWon = b.NOTDONE
     if b.gameWon == b.WHITE:
         print ("White Wins\nGame Over")
         break
