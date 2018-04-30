@@ -85,9 +85,7 @@ def maxMinBoard(board, currentDepth, bestMove):
     # Things appear to be fine, we should have a board with a good value to move to
     return (best_board, best_move)
 
-def setDifficulty(difficulty):
-    
-    return difficulty
+
     
 def staticEval2(evalBoard):
     """
