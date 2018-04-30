@@ -1,5 +1,5 @@
 # Created by Carson Wilcox for Professor Szpakowicz's AI class CSI 4106
-# These 
+# These
 # Main class runs the game
 from board import *
 from minmax import *
@@ -44,12 +44,14 @@ while b.gameWon == -1:
     except Exception:
         print ("Invalid move")
         continue
-        
+
     # Then it is the computers turn
     temp = minMax2(b)
     b = temp[0]
     print ("**********COMPUTER MOVE**********")
     b.printBoard()
+    if len(b.blacklist) != 0 and len(b.whitelist) != 0:
+        b.gameWon = b.NOTDONE
     if b.gameWon == b.WHITE:
         print ("White Wins\nGame Over")
         break

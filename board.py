@@ -90,10 +90,15 @@ class board(object):
                 black = jump in self.blacklist
                 white = jump in self.whitelist
                 if not black and not white:
+                    #winlosenotdone = self.NOTDONE
                     if self.turn == self.BLACK:
                         self.whitelist.remove(target)
+                        # if len(self.whitelist) == 0:
+                        #     winlosenotdone = self.BLACK
                     elif self.turn == self.WHITE:
                         self.blacklist.remove(target)
+                        # if len(self.blacklist) == 0:
+                        #     winlosenotdone = self.WHITE
                     yield (piece, jump, self.turn)
 
     def updateBoard(self):

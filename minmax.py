@@ -6,7 +6,7 @@ def is_won(board):
         Returns true if the game has been won
     """
     return board.gameWon != board.NOTDONE
-        
+
 
 def minMax2(board):
     """
@@ -31,7 +31,7 @@ def maxMove2(maxBoard, currentDepth):
         Calculates the best move for BLACK player (computer) (seeks a board with INF value)
     """
     return maxMinBoard(maxBoard, currentDepth-1, float('-inf'))
-    
+
 
 def minMove2(minBoard, currentDepth):
     """
@@ -46,13 +46,13 @@ def maxMinBoard(board, currentDepth, bestMove):
     # Check if we are at an end node
     if is_won(board) or currentDepth <= 0:
         return (board, staticEval2(board))
-  
+
     # So we are not at an end node, now we need to do minmax
     # Set up values for minmax
     best_move = bestMove
-    best_board = None    
-  
-    # I could probably consolidate MaxNode and MinNode more by assigning the iterator with a 
+    best_board = None
+
+    # I could probably consolidate MaxNode and MinNode more by assigning the iterator with a
     # function and doing some trickery with the bestmove == INF bullshit
     # MaxNode
     if bestMove == float('-inf'):
@@ -64,8 +64,8 @@ def maxMinBoard(board, currentDepth, bestMove):
             value = minMove2(maxBoard, currentDepth-1)[1]
             if value > best_move:
                 best_move = value
-                best_board = maxBoard         
-  
+                best_board = maxBoard
+
     # MinNode
     elif bestMove == float('inf'):
         moves = board.iterWhiteMoves()
@@ -77,11 +77,11 @@ def maxMinBoard(board, currentDepth, bestMove):
             if value < best_move:
                 best_move = value
                 best_board = minBoard
-  
+
     # Something is wrong with bestMove so raise an Exception
     else:
         raise Exception("bestMove is set to something other than inf or -inf")
-  
+
     # Things appear to be fine, we should have a board with a good value to move to
     return (best_board, best_move)
 
@@ -94,16 +94,23 @@ def staticEval2(evalBoard):
         See Comments above an evaluator for what it's strategy is
     """
     # Has someone won the game? If so return an INFINITE value
+    if evalBoard.blacklist == 0:
+        evalBoard.gameWon = evalBoard.WHITE
+    elif evalBoard.whitelist == 0:
+        evalBoard.gameWon = evalBoard.BLACK
+    else:
+        evalBoard.gameWon = evalBoard.NOTDONE
+
     if evalBoard.gameWon == evalBoard.BLACK:
-        return float('inf')  
+        return float('inf')
     elif evalBoard.gameWon == evalBoard.WHITE:
         return float('-inf')
     # Unhappy Grandfather Evaluator
 #    return 0
-    
+
     # Some setup
     score = 0
-    pieces = None   
+    pieces = None
     if evalBoard.turn == evalBoard.WHITE:
         pieces = evalBoard.whitelist
         scoremod = -1
@@ -123,9 +130,11 @@ def staticEval2(evalBoard):
             dy = abs(piece1[1] - piece2[1])
             distance += dx**2 + dy**2
     distance /= len(pieces)
+    if distance == 0:
+        distance = 1
     score = 1.0/distance * scoremod
-    
+
     # Crouching Edge Hidden Victory Evaluator
     # not complete yet
-    
+
     return score
