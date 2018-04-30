@@ -87,8 +87,7 @@ def maxMinBoard(board, currentDepth, bestMove):
 
 def setDifficulty(difficulty):
     
-    dif = difficulty
-    
+    return difficulty
     
 def staticEval2(evalBoard):
     """
